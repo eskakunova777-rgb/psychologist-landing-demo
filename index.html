@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ольга Ветрова, психолог онлайн</title>
+<meta name="description" content="Психолог онлайн: тревога, отношения, выгорание. Сессия 50 минут в Zoom или Telegram, запись в Telegram">
+<meta property="og:title" content="Ольга Ветрова, психолог онлайн">
+<meta property="og:description" content="Тревога, отношения, выгорание. Сессия 50 минут онлайн, запись в Telegram">
+<meta property="og:image" content="img/hero.jpg">
+<meta name="theme-color" content="#F2EDE8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231F454D'/><text x='16' y='23' font-size='19' text-anchor='middle' fill='%23F2EDE8' font-family='Georgia' font-style='italic'>О</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&family=Marck+Script&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --milk: #F2EDE8;
+    --sand: #E4D9CF;
+    --sea: #1F454D;
+    --sea-soft: #2C5A63;
+    --cognac: #9A5527;
+    --ink: #22323A;
+    --muted: #5E6A6E;
+    --line: rgba(31, 69, 77, .25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--milk); color: var(--ink); font: 400 17px/1.65 Manrope, system-ui, sans-serif; overflow-x: hidden; }
+  h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; font-weight: 500; line-height: 1.12; color: var(--sea); }
+  h2 { font-size: 34px; margin-bottom: 24px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 72px 0; position: relative; }
+  .label { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--sea); }
+  .script { font-family: "Marck Script", cursive; color: var(--cognac); font-size: 30px; line-height: 1; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; border: 1.5px solid var(--sea); color: var(--sea); background: transparent;
+         text-decoration: none; font: 700 13px/1 Manrope, sans-serif; letter-spacing: .18em; text-transform: uppercase;
+         padding: 18px 26px; cursor: pointer; transition: background .25s, color .25s; }
+  .btn:hover, .btn:focus-visible { background: var(--sea); color: var(--milk); }
+  .btn.solid { background: var(--sea); color: var(--milk); }
+  .btn.solid:hover, .btn.solid:focus-visible { background: var(--cognac); border-color: var(--cognac); }
+  .btn.light { border-color: var(--milk); color: var(--milk); }
+  .btn.light:hover, .btn.light:focus-visible { background: var(--milk); color: var(--sea); }
+  :focus-visible { outline: 2px solid var(--cognac); outline-offset: 3px; }
+
+  /* Шапка */
+  header { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; max-width: 1120px; margin: 0 auto; }
+  .logo { font-family: "Marck Script", cursive; font-size: 28px; color: var(--sea); text-decoration: none; }
+  header nav a { margin-left: 26px; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--sea); text-decoration: none; }
+  header nav a:not(.btn) { display: none; }
+  header .btn { padding: 12px 16px; font-size: 11px; }
+
+  /* 1. Первый экран: свет из окна следует за курсором */
+  .hero { padding: 24px 0 64px; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(520px circle at var(--lx, 70%) var(--ly, 30%), rgba(255, 250, 240, .95), rgba(255, 250, 240, 0) 70%); }
+  .hero .wrap { display: grid; gap: 40px; position: relative; }
+  .hero h1 { font-size: 44px; margin: 14px 0 10px; }
+  .hero .script { display: block; margin-bottom: 18px; }
+  .hero p.lead { color: var(--muted); margin-bottom: 28px; max-width: 460px; }
+  .hero .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+  .hero .note { font-size: 14px; color: var(--muted); }
+  .photo-stack { position: relative; padding: 0 0 28px 28px; }
+  .photo-stack::before { content: ""; position: absolute; left: 0; bottom: 0; width: 72%; height: 78%; background: var(--sea); }
+  .photo-stack::after { content: ""; position: absolute; right: -10px; top: 18%; width: 54px; height: 38%; background: var(--cognac); }
+  .photo-stack img { position: relative; z-index: 1; width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block;
+                     transform: translate(var(--px, 0), var(--py, 0)); transition: transform .4s ease-out; }
+  .vertical { position: absolute; left: 6px; bottom: 44px; writing-mode: vertical-rl; transform: rotate(180deg); z-index: 2;
+              font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--milk); font-weight: 700; }
+
+  /* 2. Вкладки с запросами */
+  .topics { background: var(--sea); color: var(--milk); }
+  .topics h2, .topics .label { color: var(--milk); }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .tab { background: transparent; border: 1.5px solid rgba(242, 237, 232, .4); color: var(--milk); font: 600 15px Manrope, sans-serif;
+         padding: 12px 20px; cursor: pointer; transition: background .25s, border-color .25s; }
+  .tab[aria-selected="true"] { background: var(--milk); color: var(--sea); border-color: var(--milk); }
+  .panel { display: grid; gap: 22px; animation: rise .45s ease-out; }
+  .panel[hidden] { display: none; }
+  .panel .feel { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-size: 26px; line-height: 1.3; }
+  .panel p { color: rgba(242, 237, 232, .85); max-width: 560px; }
+  .copied { font-size: 14px; color: #F3C9A9; min-height: 22px; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  /* 3. Обо мне и как проходит работа */
+  .about .wrap { display: grid; gap: 40px; }
+  .about-photo { position: relative; padding: 24px 24px 0 0; }
+  .about-photo::before { content: ""; position: absolute; right: 0; top: 0; width: 70%; height: 80%; background: var(--sand); }
+  .about-photo img { position: relative; width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block; }
+  .steps { list-style: none; position: relative; margin: 30px 0 8px; padding-left: 34px; }
+  .steps::before { content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+  .steps::after { content: ""; position: absolute; left: 8px; top: 6px; width: 2px; height: calc(var(--p, 0) * (100% - 12px)); background: var(--cognac); }
+  .steps li { position: relative; padding-bottom: 22px; opacity: .35; transition: opacity .5s; }
+  .steps li.on { opacity: 1; }
+  .steps li::before { content: ""; position: absolute; left: -32px; top: 6px; width: 14px; height: 14px; border-radius: 50%;
+                      background: var(--milk); border: 2px solid var(--cognac); }
+  .steps b { display: block; font-family: "Playfair Display", Georgia, serif; font-weight: 500; font-size: 20px; color: var(--sea); }
+  .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+           padding: 18px 0; margin: 10px 0 18px; }
+  .price strong { font-family: "Playfair Display", Georgia, serif; font-size: 34px; font-weight: 500; color: var(--sea); }
+  .price span { color: var(--muted); font-size: 15px; }
+  details { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; list-style: none; padding: 16px 30px 16px 0; font-weight: 600; position: relative; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; position: absolute; right: 4px; top: 12px; font-size: 22px; color: var(--cognac); transition: transform .3s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { padding: 0 0 16px; color: var(--muted); }
+
+  /* 4. Отзывы: листаются свайпом */
+  .reviews { background: var(--sand); }
+  .reviews .head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 24px; }
+  .track { display: grid; grid-auto-flow: column; grid-auto-columns: 86%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+           padding-bottom: 6px; scrollbar-width: none; }
+  .track::-webkit-scrollbar { display: none; }
+  blockquote { scroll-snap-align: start; background: var(--milk); padding: 30px 26px; position: relative; }
+  blockquote::before { content: "“"; position: absolute; top: 2px; right: 20px; font: 500 80px/1 "Playfair Display", Georgia, serif; color: var(--sand); }
+  blockquote p { position: relative; font-family: "Playfair Display", Georgia, serif; font-size: 19px; line-height: 1.45; color: var(--sea); }
+  blockquote cite { display: block; margin-top: 18px; font: 700 12px Manrope, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--cognac); font-style: normal; }
+  .dots { display: flex; gap: 8px; margin-top: 18px; }
+  .dots button { width: 9px; height: 9px; border-radius: 50%; border: 0; background: var(--line); cursor: pointer; padding: 0; transition: background .3s, transform .3s; }
+  .dots button.on { background: var(--sea); transform: scale(1.3); }
+
+  /* 5. Пауза и запись */
+  .cta { text-align: center; }
+  .breath { width: 220px; height: 220px; margin: 8px auto 26px; position: relative; display: grid; place-items: center; }
+  .breath .ring { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid var(--line); }
+  .breath .core { position: absolute; width: 46%; height: 46%; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--sea-soft), var(--sea));
+                  transition: transform 4s ease-in-out; }
+  .breath.inhale .core { transform: scale(2.05); }
+  .breath.exhale .core { transform: scale(1); transition-duration: 6s; }
+  .breath .word { position: relative; color: var(--milk); font-family: "Playfair Display", Georgia, serif; font-size: 20px; }
+  .breath-btn { background: none; border: 0; border-bottom: 1px solid var(--cognac); color: var(--cognac); font: 600 15px Manrope, sans-serif; cursor: pointer; padding: 2px 0; margin-bottom: 48px; }
+  .cta .final { border-top: 1px solid var(--line); padding-top: 48px; }
+  .cta p { color: var(--muted); max-width: 520px; margin: 0 auto 26px; }
+  footer { background: var(--sea); color: rgba(242, 237, 232, .75); font-size: 14px; padding: 30px 0 96px; text-align: center; }
+
+  /* Кнопка, которая на телефоне всегда под рукой */
+  .sticky { position: fixed; left: 16px; right: 16px; bottom: 16px; justify-content: center; z-index: 10; box-shadow: 0 10px 28px rgba(31, 69, 77, .3);
+            transform: translateY(150%); transition: transform .3s; }
+  .sticky.show { transform: none; }
+
+  /* Появление блоков при прокрутке */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (min-width: 860px) {
+    header nav a:not(.btn) { display: inline; }
+    header .btn { padding: 14px 20px; font-size: 12px; }
+    .hero { padding-top: 40px; }
+    .hero .wrap { grid-template-columns: 1.05fr 1fr; align-items: center; }
+    .hero h1 { font-size: 64px; }
+    h2 { font-size: 46px; }
+    .panel { grid-template-columns: 1fr 1fr; align-items: start; }
+    .about .wrap { grid-template-columns: 1fr 1.05fr; align-items: start; }
+    .track { grid-auto-columns: calc((100% - 32px) / 3); }
+    .sticky { display: none; }
+    footer { padding-bottom: 30px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#top">Ольга Ветрова</a>
+  <nav>
+    <a href="#topics">Запросы</a>
+    <a href="#about">Как работаю</a>
+    <a href="#reviews">Отзывы</a>
+    <a class="btn" href="https://t.me/AI_Carousel_Assistant_bot" target="_blank" rel="noopener">Записаться</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div>
+      <span class="label">Психолог онлайн · КПТ</span>
+      <h1>Ольга Ветрова</h1>
+      <span class="script">спокойно и в вашем темпе</span>
+      <p class="lead">Помогаю разобраться с тревогой, сложностями в отношениях и выгоранием. Практика с 2017 года, консультирую взрослых из любой точки мира</p>
+      <div class="actions">
+        <a class="btn solid" id="hero-btn" href="https://t.me/AI_Carousel_Assistant_bot" target="_blank" rel="noopener">Записаться в Telegram</a>
+        <span class="note">Отвечаю в течение дня</span>
+      </div>
+    </div>
+    <div class="photo-stack">
+      <span class="vertical" aria-hidden="true">онлайн · с 2017</span>
+      <img src="img/hero.jpg" alt="Ольга Ветрова, психолог" id="hero-img">
+    </div>
+  </div>
+</section>
+
+<section class="topics" id="topics">
+  <div class="wrap reveal">
+    <span class="label">С чем приходят</span>
+    <h2>Что из этого про вас?</h2>
+    <div class="tabs" role="tablist" aria-label="Запросы">
+      <button class="tab" role="tab" id="t-1" aria-controls="p-1" aria-selected="true">Тревога</button>
+      <button class="tab" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" tabindex="-1">Отношения</button>
+      <button class="tab" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" tabindex="-1">Выгорание</button>
+    </div>
+    <div class="panel" role="tabpanel" id="p-1" aria-labelledby="t-1">
+      <p class="feel">Мысли крутятся по кругу, трудно расслабиться и уснуть</p>
+      <div>
+        <p>Ищем, что запускает тревогу, и учимся замечать её раньше, чем она накроет. Подбираем способы, которые работают именно у вас</p>
+        <p style="margin:22px 0 10px"><button class="btn light write" data-topic="тревога">Написать про тревогу</button></p>
+        <p class="copied" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="p-2" aria-labelledby="t-2" hidden>
+      <p class="feel">Ссоры идут по одному сценарию, сложно сказать о своих чувствах</p>
+      <div>
+        <p>Разбираем, что происходит между вами, и пробуем говорить по-другому. Можно прийти одной или одному, можно вдвоём</p>
+        <p style="margin:22px 0 10px"><button class="btn light write" data-topic="отношения">Написать про отношения</button></p>
+        <p class="copied" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="p-3" aria-labelledby="t-3" hidden>
+      <p class="feel">Работа перестала радовать, сил нет даже на отдых</p>
+      <div>
+        <p>Находим, куда уходят силы, и возвращаем опору и понятные границы между работой и жизнью</p>
+        <p style="margin:22px 0 10px"><button class="btn light write" data-topic="выгорание">Написать про выгорание</button></p>
+        <p class="copied" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="about-photo"><img src="img/room.jpg" alt="Рабочее место для онлайн-консультаций"></div>
+      <p style="margin-top:28px">Я психолог-консультант, работаю в когнитивно-поведенческом подходе. На сессиях мы не ищем виноватых. Разбираем, что с вами происходит, и подбираем шаги, которые подходят именно вам</p>
+    </div>
+    <div class="reveal">
+      <span class="label">Как проходит работа</span>
+      <h2>Три шага до первой встречи и дальше</h2>
+      <ol class="steps" id="steps">
+        <li><b>Пишете в Telegram</b>Коротко, можно одной фразой. Отвечаю в течение дня и предлагаю время</li>
+        <li><b>Первая встреча, 50 минут</b>Знакомимся, обсуждаем запрос и решаем, подходим ли мы друг другу</li>
+        <li><b>Встречи раз в неделю</b>Онлайн в Zoom или Telegram. Будни 10:00–20:00 по Москве, суббота 10:00–14:00</li>
+      </ol>
+      <div class="price"><strong>3 500 ₽</strong><span>за сессию 50 минут, первая встреча стоит столько же</span></div>
+      <details><summary>Как понять, что мне нужен психолог?</summary><p>Если что-то мешает жить так, как хочется, и самому справиться не получается, этого достаточно, чтобы прийти</p></details>
+      <details><summary>Что, если мы не подойдём друг другу?</summary><p>Это нормально. Скажите об этом прямо, и я подскажу, к кому ещё можно обратиться</p></details>
+      <details><summary>Это конфиденциально?</summary><p>Да. Всё, что вы рассказываете, остаётся между нами. Исключение одно: угроза жизни</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap reveal">
+    <div class="head">
+      <div><span class="label">Отзывы</span><h2 style="margin:10px 0 0">Слова клиентов</h2></div>
+      <span class="script" aria-hidden="true">листайте →</span>
+    </div>
+    <div class="track" id="track">
+      <blockquote><p>«Пришла с паникой перед каждым рабочим созвоном. Через пару месяцев заметила, что готовлюсь к ним спокойно. Ценю, что на сессиях не было оценок»</p><cite>Анна К.</cite></blockquote>
+      <blockquote><p>«Мы с мужем пришли на грани развода. Научились договариваться без крика, это для нас главное»</p><cite>Ирина и Павел</cite></blockquote>
+      <blockquote><p>«Думал, что психолог будет давать советы. А получилось, что я сам разобрался, почему так устаю на работе»</p><cite>Дмитрий</cite></blockquote>
+    </div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap reveal">
+    <span class="label">Пауза на минуту</span>
+    <h2>Подышите вместе с кругом</h2>
+    <p>Вдох на 4 счёта, выдох на 6. Четыре круга, меньше минуты</p>
+    <div class="breath" id="breath" aria-live="polite"><span class="ring"></span><span class="core"></span><span class="word" id="breath-word">Готовы?</span></div>
+    <button class="breath-btn" id="breath-btn">Начать</button>
+
+    <div class="final">
+      <h2>Напишите, с чего хотите начать</h2>
+      <p>Можно коротко: «Хочу на первую встречу». Отвечу в течение дня и предложу время</p>
+      <a class="btn solid" id="final-btn" href="https://t.me/AI_Carousel_Assistant_bot" target="_blank" rel="noopener">Написать в Telegram</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Ольга Ветрова, психолог · Онлайн-консультации · Не оказываю экстренную помощь. Если вам нужна срочная помощь, звоните 112</div>
+</footer>
+
+<a class="btn solid sticky" id="sticky" href="https://t.me/AI_Carousel_Assistant_bot" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">Записаться в Telegram</a>
+
+<script>
+const TG = 'https://t.me/AI_Carousel_Assistant_bot';
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// 1. Свет из окна: на компьютере идёт за курсором, на телефоне медленно гуляет сам; фото слегка отвечает движением
+const hero = document.getElementById('hero'), heroImg = document.getElementById('hero-img');
+if (!calm) {
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    hero.style.setProperty('--lx', x * 100 + '%'); hero.style.setProperty('--ly', y * 100 + '%');
+    heroImg.style.setProperty('--px', (x - .5) * -10 + 'px'); heroImg.style.setProperty('--py', (y - .5) * -10 + 'px');
+  });
+  if (matchMedia('(hover: none)').matches) {
+    let t = 0;
+    (function drift() { t += .006; hero.style.setProperty('--lx', 55 + Math.sin(t) * 30 + '%'); hero.style.setProperty('--ly', 30 + Math.cos(t * .8) * 18 + '%'); requestAnimationFrame(drift); })();
+  }
+}
+
+// 2. Вкладки: мышь, тач и стрелки на клавиатуре
+const tabs = [...document.querySelectorAll('.tab')];
+function openTab(tab) {
+  tabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+                      document.getElementById(t.getAttribute('aria-controls')).hidden = !on; });
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => openTab(t));
+  t.addEventListener('keydown', e => {
+    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; openTab(n); n.focus(); }
+  });
+});
+// «Написать про…»: копирует готовое сообщение с темой и открывает Telegram
+document.querySelectorAll('.write').forEach(b => b.addEventListener('click', async () => {
+  const msg = `Здравствуйте, Ольга! Хочу на первую встречу. Тема: ${b.dataset.topic}`;
+  const out = b.closest('.panel').querySelector('.copied');
+  try { await navigator.clipboard.writeText(msg); out.textContent = 'Сообщение скопировано, вставьте его в чат'; }
+  catch { out.textContent = 'Напишите: «' + msg + '»'; }
+  window.open(TG, '_blank', 'noopener');
+}));
+
+// 3. Шкала шагов заполняется по мере прокрутки
+const steps = document.getElementById('steps'), items = [...steps.querySelectorAll('li')];
+let best = 0;   // пройденные шаги не гаснут при прокрутке вверх
+function paintSteps() {
+  const r = steps.getBoundingClientRect(), vh = innerHeight;
+  const p = best = Math.max(best, Math.min(1, Math.max(0, (vh * .75 - r.top) / r.height)));
+  steps.style.setProperty('--p', p);
+  items.forEach((li, i) => li.classList.toggle('on', p >= i / items.length + .05 || calm));
+}
+addEventListener('scroll', paintSteps, { passive: true }); paintSteps();
+
+// 4. Отзывы: точки показывают, какая карточка на экране, и листают по нажатию
+const track = document.getElementById('track'), cards = [...track.children], dots = document.getElementById('dots');
+cards.forEach(c => { const d = document.createElement('button'); d.addEventListener('click', () => track.scrollTo({ left: c.offsetLeft - track.offsetLeft, behavior: 'smooth' })); dots.append(d); });
+const seenCards = new IntersectionObserver(es => es.forEach(e => dots.children[cards.indexOf(e.target)].classList.toggle('on', e.isIntersecting)), { root: track, threshold: .6 });
+cards.forEach(c => seenCards.observe(c));
+
+// 5. Дыхательный круг: вдох 4 с, выдох 6 с, четыре круга
+const breath = document.getElementById('breath'), word = document.getElementById('breath-word'), bBtn = document.getElementById('breath-btn');
+let running = false;
+bBtn.addEventListener('click', async () => {
+  if (running) return; running = true; bBtn.textContent = 'Дышим…';
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  for (let i = 0; i < 4; i++) {
+    breath.className = 'breath inhale'; word.textContent = 'Вдох'; await wait(4000);
+    breath.className = 'breath exhale'; word.textContent = 'Выдох'; await wait(6000);
+  }
+  breath.className = 'breath'; word.textContent = 'Спасибо'; bBtn.textContent = 'Ещё раз'; running = false;
+});
+
+// Появление блоков и липкая кнопка: видна, только когда на экране нет другой кнопки записи
+const rev = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), { threshold: .15 });
+document.querySelectorAll('.reveal').forEach(el => rev.observe(el));
+const sticky = document.getElementById('sticky'), visible = new Set();
+const io = new IntersectionObserver(es => {
+  es.forEach(e => e.isIntersecting ? visible.add(e.target) : visible.delete(e.target));
+  sticky.classList.toggle('show', visible.size === 0);
+});
+document.querySelectorAll('#hero-btn, #final-btn, .write, header .btn').forEach(b => io.observe(b));
+</script>
+</body>
+</html>
